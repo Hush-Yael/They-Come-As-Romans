@@ -1,0 +1,107 @@
+@font-face {
+    font-family: 'Alfacaad';
+    src: url(fonts/Afacad-Regular.woff2);
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Alfacaad';
+    src: url(fonts/Afacad-Medium.woff2);
+    font-weight: 500;
+}
+@font-face {
+    font-family: 'Alfacaad';
+    src: url(fonts/Afacad-Bold.woff2);
+    font-weight: 700;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Alfacaad',sans-serif;
+}
+
+html {
+    background: hsl(0, 0%, 10%);
+    color: #fff;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+input {
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.125em;
+    border: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type='number'] {-moz-appearance: textfield;}
+
+#app-form, #app-res {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    gap: .5em;
+    justify-items: center;
+    background: hsl(0, 0%, 30%);
+    border: 3px solid hsl(0, 0%, 40%);
+    padding-bottom: .25em;
+    font-size: 1.125em;
+}
+#app-form {
+    max-width: 70%;
+    border-radius: 5px;
+}
+#app-form label, #app-res .title {
+    text-align: center;
+    background: hsl(0, 0%, 35%);
+    border-bottom: 2px solid hsl(0, 0%, 20%);
+}
+#app-form label {
+    text-wrap: balance;
+    padding: .25em .75em;
+}
+#app-form input[type='number'] {
+    padding: .25em .5em;
+    min-width: 65%;
+    text-align: center;
+}   
+#app-form input[type='number'], #app-res .txt {
+    background: hsl(0, 0%, 45%);
+    border-bottom: 3px solid hsl(0, 0%, 15%);
+}
+input[type='number']:focus {outline: 2px solid hsl(0, 0%,90%);}
+#app-form input[type='submit'] {
+    background: hsl(0, 0%, 40%);
+    padding: 0 .5em;
+    border: 2px solid hsl(0, 0%, 25%);
+    border-radius: 3px;
+    cursor: pointer;
+}
+#app-form input[type='submit']:hover, 
+#app-form input[type='submit']:focus {background: hsl(0, 0%, 45%);}
+#app-form input[type='submit']:active {background: hsl(0, 0%, 50%);}
+
+#app-res {
+    min-width: 50%;
+}
+#app-res .title {width: 100%;}
+#app-res .txt {
+    padding: .125em 0.5em;
+}
+#app-res .txt:empty::before {
+    content: 'Nada todavía.';
+    font-style: italic;
+    color: hsl(0, 0%, 75%);
+}
