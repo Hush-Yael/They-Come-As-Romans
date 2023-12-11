@@ -22,6 +22,14 @@ const convertirArabigos = (num = 1,char1 = '',char2 = '',char3 = '',char4 = '') 
 			if (i == 9) res = char4
         }
     }
+    if (res.includes('^')) {
+        let elevatedSpan = '<span class="elevated">';
+        for (let i = 0; i < res.length; i++) {
+            if (res.charAt(i).includes('^')) elevatedSpan += res.charAt(i-1);
+        }
+        elevatedSpan += "</span>";
+        return res = elevatedSpan;
+    }
     return res;
 }
 
@@ -30,17 +38,25 @@ const chars = [
     ['X', 'XL', 'L', 'XC'], 
     ['C','CD','D','CM'],
     ['M','IV^','V^','IX^'],
-    ['X^','XL^','L^','XC^'],
-    ['C^','CD^','D^','CM^']
+    [
+        'X^',
+        `<span class='elevated'>XL</span>`,
+        `<span class='elevated'>L</span>`,
+        `<span class='elevated'>XC</span>`
+    ],
+    [
+        `C^`,
+        `<span class='elevated'>CD</span>`,
+        `<span class='elevated'>D</span>`,
+        `<span class='elevated'>CM</span>`
+    ]
 ]
 
 const concatenarResultados = (numChars = '1') => {
-    let listaNums = [];
-    let listaChars = [];
+    let listaNums = []; let listaChars = [];
 
     for (let i = numChars.length - 1; i >= 0; i--) {
         listaNums.unshift(numChars.charAt(i));
-        console.log(i)
         listaChars.push([...chars[i]]);
     }
 	let res = '';
@@ -64,22 +80,22 @@ window.onsubmit = e => {
         if (numChars == '' || numChars == null || isNaN(numInt)) return;
         if (numInt < 0) return alert('No se aceptan números negativos.');
         if (numInt == 0) return alert('EL NÚMERO CERO NO EXISTE.');
-        
+
         let res = '';
-        console.log(numChars.length);
         if (numChars.length < 8) {
             if (numChars.length == 7) {
+                resTXT.innerHTML = `<span class='million'></span>`
                 for (let i = 0; i < numChars.charAt(0); i++) {
-                    res += 'M'
+                    resTXT.querySelector('.million').innerHTML += 'M'
                 }
                 let newNumChars = numChars.slice(1);
-                res += `^${concatenarResultados(newNumChars)}`
-                return resTXT.textContent = res;
+                res = concatenarResultados(newNumChars);
+                return resTXT.innerHTML += res;
             }
             res = concatenarResultados(numChars);
-            return resTXT.textContent = res;
+            return resTXT.innerHTML = res;
         }
         
-        return alert('Por motivos de flojera, el autor de este algoritmo no lo programó para retornar valores mayores a 9 millones.');
+        return alert('Por motivos de flojera, el autor de este algoritmo no lo programó para retornar valores mayores a 9.999.999 millones.');
     }
 }
