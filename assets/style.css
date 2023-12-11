@@ -22,8 +22,47 @@
 }
 
 html {
-    background: hsl(0, 0%, 10%);
+    background: hsl(0, 0%, 15%);
+    --s: 50px;
+    --p:at 45% 40%,#0000 75%,;
+    --g1:conic-gradient(var(--p)hsl(0, 0%, 25%) 0);
+    --g2:conic-gradient(var(--p)hsl(0, 0%, 35%) 0);
+    background:
+        var(--g1),var(--g2) calc(2*var(--s)) 0,
+        var(--g2) calc(3*var(--s)) var(--s),
+        var(--g1) var(--s) var(--s) #2c2e2a;
+    background-size: calc(4*var(--s)) calc(2*var(--s));
     color: #fff;
+}
+
+svg {fill: #fff;}
+
+header {
+    position: fixed;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    justify-items: center;
+    background: hsl(0, 0%, 30%);
+    border-bottom: 3px solid hsl(0, 0%, 0%);
+    min-width: 100%;
+    font-size: 1.125em;
+    box-shadow: 0 0 5px #000;
+}
+header > * {
+    min-width: 100%;
+    text-align: center;
+}
+header h2 {
+    padding: .125em;
+    border-bottom: 3px solid hsl(0, 0%, 25%);
+}
+header h3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5em;
+    background: hsl(0, 0%, 35%);
 }
 
 main {
@@ -56,11 +95,14 @@ input[type='number'] {-moz-appearance: textfield;}
     justify-items: center;
     background: hsl(0, 0%, 30%);
     border: 3px solid hsl(0, 0%, 40%);
+    border: 3px solid #000;
     padding-bottom: .25em;
     font-size: 1.125em;
+    font-weight: 500;
+    box-shadow: 0 0 13px #000a;
 }
 #app-form {
-    max-width: 70%;
+    max-width: 85%;
     border-radius: 5px;
 }
 #app-form label, #app-res .title {
@@ -83,11 +125,12 @@ input[type='number'] {-moz-appearance: textfield;}
 }
 input[type='number']:focus {outline: 2px solid hsl(0, 0%,90%);}
 #app-form input[type='submit'] {
-    background: hsl(0, 0%, 40%);
+    background: hsl(0, 0%, 50%);
     padding: 0 .5em;
     border: 2px solid hsl(0, 0%, 25%);
     border-radius: 3px;
     cursor: pointer;
+    border-radius: 15px;
 }
 #app-form input[type='submit']:hover, 
 #app-form input[type='submit']:focus {background: hsl(0, 0%, 45%);}
@@ -95,13 +138,26 @@ input[type='number']:focus {outline: 2px solid hsl(0, 0%,90%);}
 
 #app-res {
     min-width: 50%;
+    padding-bottom: .5em;
 }
 #app-res .title {width: 100%;}
 #app-res .txt {
-    padding: .125em 0.5em;
+    margin-inline: .5em;
+    padding: .125em 0.375em;
+    border-radius: 10px;
+    box-shadow: 0 0 2px #000d;
 }
 #app-res .txt:empty::before {
     content: 'Nada todavía.';
     font-style: italic;
     color: hsl(0, 0%, 75%);
+}
+
+.million, .elevated {
+    text-decoration: underline 2px solid;
+    text-underline-offset: -.875em;
+}
+
+@media only screen and (min-width: 375px) {
+    #app-form {max-width: 75%}
 }
