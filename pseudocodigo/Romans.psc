@@ -18,7 +18,8 @@ Funcion res <- convertirArabigos(num,char1,char2,char3,char4)
 		Para i = 1 Hasta numInt hacer
 			Si i < 4 Entonces res = Concatenar(res,char1);
 			SiNo
-				Si i >= 4 & i < 9 entonces si i = 4 Entonces res = char2;
+				Si i >= 4 & i < 9 entonces 
+					si i = 4 Entonces res = char2;
 					sino
 						si i = 5 entonces res = char3;
 						sino res = concatenar(res,char1); finSi
@@ -48,8 +49,7 @@ Funcion res <- returnRomanos(numChars,listaChars)
 	si length < 8 
 		Si length = 7 Entonces
 			Para i = 1 Hasta ConvertirANumero(Subcadena(numChars,0,1)) Hacer res = Concatenar(res,'M'); Fin Para
-			newNumChars = Subcadena(numchars,2,length-1);
-			Escribir newnumChars;
+			newNumChars = Subcadena(numchars,2,length);
 			res = Concatenar(res,'^');
 			res = Concatenar(res,concatenarResultados(newNumChars,length-1,listaChars));
 		SiNo res = concatenarResultados(numChars,length,listaChars); Fin Si
@@ -62,8 +62,8 @@ Fin Funcion
 
 Funcion inicio(listaChars)
 	Escribir 'Ingrese un número arábigo para convertirlo en romano.';
-	Definir  numChar Como Caracter;
-	Leer  numChars;
+	Definir numChars Como Caracter;
+	Leer numChars;
 	res = returnRomanos(numChars,listaChars);
 	Escribir res;
 	Escribir '';
